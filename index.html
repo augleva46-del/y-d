@@ -38,6 +38,8 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
+    transform: translateY(-40px); 
+}
 }
 
 .hero h1 {
@@ -77,37 +79,43 @@ h2 {
     position: relative;
     max-width: 600px;
     margin: auto;
+    padding: 40px 0;
 }
 
 .timeline-modern .line {
     position: absolute;
     left: 50%;
-    width: 2px;
-    background: #444;
     top: 0;
     bottom: 0;
+    width: 2px;
+    background: #444;
     transform: translateX(-50%);
 }
 
 .timeline-item {
     position: relative;
-    width: 50%;
-    padding: 20px;
+    width: 100%;
+    margin: 40px 0;
 }
 
-.timeline-item.left {
+.timeline-item .content {
+    width: 45%;
+}
+
+.timeline-item.left .content {
     text-align: right;
+    margin-right: 55%;
 }
 
-.timeline-item.right {
-    left: 50%;
+.timeline-item.right .content {
+    margin-left: 55%;
 }
 
 .timeline-item::before {
     content: "";
     position: absolute;
-    top: 25px;
     left: 50%;
+    top: 10px;
     transform: translateX(-50%);
     width: 14px;
     height: 14px;
@@ -163,18 +171,15 @@ h2 {
 
 /* MOBILE */
 @media (max-width: 600px) {
-    .timeline-item {
-        width: 100%;
-        text-align: left;
-        padding-left: 60px;
-    }
-
-    .timeline-item.right {
-        left: 0;
-    }
-
     .timeline-modern .line {
         left: 20px;
+    }
+
+    .timeline-item .content {
+        width: 100%;
+        margin-left: 40px !important;
+        margin-right: 0 !important;
+        text-align: left !important;
     }
 
     .timeline-item::before {
@@ -205,39 +210,52 @@ h2 {
   <h2>Тайминг</h2>
 
   <div class="timeline-modern">
-    <div class="line"></div>
 
-    <div class="timeline-item left">
+  <div class="line"></div>
+
+  <div class="timeline-item left">
+    <div class="content">
       <span class="time">14:30</span>
       <p>ЗАГС</p>
     </div>
+  </div>
 
-    <div class="timeline-item right">
+  <div class="timeline-item right">
+    <div class="content">
       <span class="time">15:00</span>
       <p>Свадебная фотосессия</p>
     </div>
+  </div>
 
-    <div class="timeline-item left">
+  <div class="timeline-item left">
+    <div class="content">
       <span class="time">16:40</span>
       <p>Приветственный фуршет</p>
     </div>
+  </div>
 
-    <div class="timeline-item right">
+  <div class="timeline-item right">
+    <div class="content">
       <span class="time">17:00</span>
       <p>Выездная церемония</p>
     </div>
+  </div>
 
-    <div class="timeline-item left">
+  <div class="timeline-item left">
+    <div class="content">
       <span class="time">18:00</span>
       <p>Праздничный банкет</p>
     </div>
+  </div>
 
-    <div class="timeline-item right">
+  <div class="timeline-item right">
+    <div class="content">
       <span class="time">23:00</span>
       <p>Финал свадебного вечера</p>
     </div>
-
   </div>
+
+</div>
 </section>
 
 <!-- DETAILS -->
@@ -260,7 +278,21 @@ h2 {
     <div class="color" style="background:#d4a373;"></div>
   </div>
 </section>
+<section class="fade">
+  <h2>Детали</h2>
 
+  <p style="max-width: 400px; margin: auto; line-height: 1.6;">
+    💌 Чтобы наши руки были свободны<br>
+    для объятий, будем рады легким<br>
+    подаркам в конвертах 💌
+  </p>
+
+  <p style="max-width: 400px; margin: 30px auto; line-height: 1.6;">
+    👼🏻 Пожалуйста, оставьте малышей<br>
+    в надежных руках на вечер нашего торжества,<br>
+    так как формат свадьбы не предполагает детской зоны 👼🏻
+  </p>
+</section>
 <!-- RSVP -->
 <section class="fade">
   <h2>Вы будете с нами?</h2>
