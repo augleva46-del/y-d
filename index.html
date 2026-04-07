@@ -281,15 +281,11 @@ h2 {
   letter-spacing: 2px;
   color: #777;
 }
-    .timer {
-  margin-top: 40px; /* было 30 */
-}
-    /* ТАЙМЕР */
-.timer {
+   .timer {
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .timer div {
@@ -307,6 +303,77 @@ h2 {
   font-size: 12px;
   color: #999;
   margin-top: 5px;
+}
+    /* КАРТА */
+
+
+.map img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease;
+}
+.map img {
+  transform: scale(0.95);
+}
+
+.map.show img {
+  transform: scale(1);
+}
+
+.map.show {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.map img:hover {
+  transform: scale(1.05);
+}
+
+/* КНОПКА МАРШРУТА */
+.map-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  background: #d2b8a3;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+/* hover эффект */
+.map-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+/* нажатие */
+.map-btn:active {
+  transform: scale(0.95);
+}
+    @keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(210,184,163, 0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(210,184,163, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(210,184,163, 0); }
+}
+
+.map-btn {
+  animation: pulse 2.5s infinite;
+}
+    .map {
+  margin-top: 25px;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.8s ease;
+}
+
+.map.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 </style>
 </head>
@@ -389,9 +456,22 @@ h2 {
 <!-- DETAILS -->
 <section class="fade details">
   <h2>Детали мероприятия</h2>
+
   <p><strong>Дата:</strong> 21.08.2026</p>
   <p><strong>Площадка:</strong> Magic Moon</p>
   <p><strong>Адрес:</strong> Весенняя ул., 82</p>
+
+  <!-- КАРТА -->
+  <div class="map">
+    <a href="https://yandex.ru/maps/-/CPf-E2Pl" target="_blank">
+      <img src="map.jpg" alt="Карта" />
+    </a>
+  </div>
+
+  <!-- КНОПКА -->
+  <a href="https://yandex.ru/maps/-/CPf-E2Pl" target="_blank" class="map-btn">
+    📍 Проложить маршрут
+  </a>
 </section>
 
 <!-- DRESS CODE -->
@@ -460,14 +540,21 @@ h2 {
 <script>
 // АНИМАЦИЯ
 const fades = document.querySelectorAll('.fade');
-
+const map = document.querySelector('.map');
 function showOnScroll() {
-  fades.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 50) {
-      el.classList.add('show');
-    }
-  });
+ fades.forEach(el => {
+  const top = el.getBoundingClientRect().top;
+  if (top < window.innerHeight - 50) {
+    el.classList.add('show');
+  }
+});
+
+if (map) {
+  const mapTop = map.getBoundingClientRect().top;
+  if (mapTop < window.innerHeight - 120) {
+    map.classList.add('show');
+  }
+}
 }
 
 window.addEventListener('scroll', showOnScroll);
