@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Manrope', sans-serif;
+    background: #f7f5f2;
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+h1, h2 {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 1px;
+}
+
+.hero {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486') center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.button {
+    margin-top: 20px;
+    padding: 12px 28px;
+    border: 1px solid white;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: white;
+    color: black;
+}
+
+.polaroid {
+    background: white;
+    padding: 10px;
+    width: 220px;
+    margin: 20px;
+    display: inline-block;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: rotate(-2deg);
+    transition: 0.3s;
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.polaroid:hover {
+    transform: scale(1.05);
+}
+
+.polaroid img {
+    width: 100%;
+}
+
+.fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
+}
+
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline {
+    max-width: 500px;
+    margin: auto;
+    text-align: left;
+}
+
+.timeline div {
+    margin: 15px 0;
+}
+
+.rsvp button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: 1px solid black;
+    background: none;
+    cursor: pointer;
+}
+
+footer {
+    padding: 40px;
+    font-size: 14px;
+    color: #777;
+}
+  .timeline-modern {
+    position: relative;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px 0;
+}
+
+.timeline-modern .line {
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    background: #555;
+    top: 0;
+    height: 0;
+    transform: translateX(-50%);
+    animation: growLine 2s ease forwards;
+}
+
+@keyframes growLine {
+    from { height: 0; }
+    to { height: 100%; }
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 20px 30px;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.timeline-item:nth-child(2) { animation-delay: 0.3s; }
+.timeline-item:nth-child(3) { animation-delay: 0.6s; }
+.timeline-item:nth-child(4) { animation-delay: 0.9s; }
+.timeline-item:nth-child(5) { animation-delay: 1.2s; }
+.timeline-item:nth-child(6) { animation-delay: 1.5s; }
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timeline-item.left {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item.right {
+    left: 50%;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    width: 14px;
+    height: 14px;
+    background: #d2b8a3;
+    border-radius: 50%;
+    left: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: dotFade 0.5s ease forwards;
+}
+
+.timeline-item.right::before {
+    left: 0;
+    transform: translateX(-50%);
+}
+
+.timeline-item:nth-child(2)::before { animation-delay: 0.4s; }
+.timeline-item:nth-child(3)::before { animation-delay: 0.7s; }
+.timeline-item:nth-child(4)::before { animation-delay: 1.0s; }
+.timeline-item:nth-child(5)::before { animation-delay: 1.3s; }
+.timeline-item:nth-child(6)::before { animation-delay: 1.6s; }
+
+@keyframes dotFade {
+    to { opacity: 1; }
+}
+
+.time {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+}
+
+/* 📱 МОБИЛКА */
+@media (max-width: 600px) {
+    .timeline-modern .line {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        text-align: left;
+    }
+
+    .timeline-item.right,
+    .timeline-item.left {
+        left: 0;
+    }
+
+    .timeline-item::before {
+        left: 20px;
+    }
+}
+  .timeline-item:nth-child(7) { animation-delay: 1.8s; }
+.timeline-item:nth-child(7)::before { animation-delay: 1.9s; }
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <h1> Дмитрий & Юлия </h1>
+    <p>  WEDDING DAY  </p>
+    <a href="#invite" class="button">Открыть</a>
+</section>
+
+<!-- DATE -->
+<section id="invite" class="fade">
+    <h2>21 августа 2026</h2>
+    <p>Сохраните эту дату</p>
+</section>
+<!-- TIMER -->
+<section class="fade">
+    <h2>До нашей свадьбы осталось</h2>
+
+    <div id="timer" style="font-size: 28px; margin-top: 20px; letter-spacing: 2px;">
+        <span id="days">00</span> дн 
+        <span id="hours">00</span> ч 
+        <span id="minutes">00</span> мин 
+        <span id="seconds">00</span> сек
+    </div>
+</section>
+
+
+<!-- PROGRAM -->
+<section class="fade">
+    <h2>Тайминг</h2>
+
+    <div class="timeline-modern">
+
+        <div class="line"></div>
+
+        <div class="timeline-item left">
+            <div class="content">
+                <span class="time">14:30</span>
+                <p>ЗАГС</p>
+            </div>
+        </div>
+
+        <div class="timeline-item right">
+            <div class="content">
+                <span class="time">15:00</span>
+                <p>Свадебная фотосессия</p>
+            </div>
+        </div>
+
+        <div class="timeline-item left">
+            <div class="content">
+                <span class="time">16:40</span>
+                <p>Приветственный фуршет</p>
+            </div>
+        </div>
+
+        <div class="timeline-item right">
+            <div class="content">
+                <span class="time">17:00</span>
+                <p>Выездная церемония</p>
+            </div>
+        </div>
+
+        <div class="timeline-item left">
+            <div class="content">
+                <span class="time">18:00</span>
+                <p>Праздничный банкет</p>
+            </div>
+        </div>
+
+    </div><div class="timeline-item right">
+    <div class="content">
+        <span class="time">23:00</span>
+        <p>Финал свадебного вечера</p>
+    </div>
+</div>
+</section>
+
+<!-- ДЕТАЛИ -->
+<section class="fade details">
+  <div class="container">
+    <h2>Детали мероприятия</h2>
+    <p><strong>Дата:</strong> 21.08.2026</p>
+    <p><strong>Площадка:</strong> Magic Moon</p>
+    <p><strong>Адрес:</strong> Весенняя ул., 82, Тихая Слобода</p>
+    <a class="btn" href="https://yandex.ru/maps/org/moon_magic/150379280374?si=radhg224wukupfkt0ugcrq9rag" target="_blank">
+      Открыть на карте
+    </a>
+  </div>
+</section>
+<!-- ДРЕСС-КОД -->
+<section class="fade">
+  <div class="container">
+    <h2>Дресс-код</h2>
+    <p>Будем рады видеть вас в нежных пастельных оттенках</p>
+
+    <div class="palette">
+      <div class="color" style="background:#edd8d8;"></div>
+      <div class="color" style="background:f8f6c8;"></div>
+      <div class="color" style="background:#ffffff; border:1px solid #ddd;"></div>
+      <div class="color" style="background:#472706;"></div>
+    </div>
+  </div>
+</section>
+<!-- RSVP -->
+<section class="fade rsvp">
+    <h2>Вы придете?</h2>
+    <button onclick="alert('Отлично! Ждём вас ❤️')">Приду</button>
+    <button onclick="alert('Очень жаль 😢')">Не приду</button>
+</section>
+
+<footer>
+    С любовью, Дмитрий и Юлия!
+</footer>
+
+<script>
+const fades = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+    fades.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            el.classList.add('show');
+        }
+    });
+});
+</script>
+<script>
+const weddingDate = new Date("2026-08-21T15:00:00").getTime();
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / 1000 / 60) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+</script>
+</body>
+</html>
