@@ -38,7 +38,7 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-    transform: translateY(-250px); 
+    transform: translateY(-350px); 
 }
 
 
@@ -415,28 +415,31 @@ h2 {
 <section class="fade">
   <h2>Вы будете с нами?</h2>
 
-  <form onsubmit="sendRSVP(event)" class="rsvp-form">
+ <form onsubmit="sendRSVP(event)" class="rsvp-form">
 
-    <input type="text" id="name" placeholder="Ваше имя" required>
+  <!-- ИМЯ -->
+  <input type="text" id="name" placeholder="Ваше имя" required>
 
-    <!-- КРАСИВЫЕ КНОПКИ -->
-    <div class="rsvp-options">
-      <label>
-        <input type="radio" name="answer" value="Да" required>
-        <span class="option">Да <span class="heart">❤</span></span>
-      </label>
+  <!-- КОММЕНТАРИЙ -->
+  <textarea id="comment" placeholder="Комментарий (например: буду с +1)"></textarea>
 
-      <label>
-        <input type="radio" name="answer" value="Нет">
-        <span class="option">Нет</span>
-      </label>
-    </div>
+  <!-- ВЫБОР -->
+  <div class="rsvp-options">
+    <label>
+      <input type="radio" name="answer" value="Да" required>
+      <span class="option">Да <span class="heart">❤</span></span>
+    </label>
 
-    <textarea id="comment" placeholder="Комментарий"></textarea>
+    <label>
+      <input type="radio" name="answer" value="Нет">
+      <span class="option">Нет</span>
+    </label>
+  </div>
 
-    <button type="submit" class="submit-btn">Отправить</button>
+  <!-- КНОПКА -->
+  <button type="submit" class="submit-btn">Отправить</button>
 
-  </form>
+</form>
 </section>
 
 <footer style="padding:40px; text-align:center; color:#888;">
