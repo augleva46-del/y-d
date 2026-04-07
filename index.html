@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+    
 body {
     margin: 0;
     font-family: 'Manrope', sans-serif;
@@ -375,6 +376,55 @@ h2 {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+    /* ЛИНИЯ (рисуется) */
+.timeline-modern .line {
+  height: 0;
+  transition: height 1.5s ease;
+}
+
+.timeline-modern.show .line {
+  height: 100%;
+}
+
+/* ЭЛЕМЕНТЫ */
+.timeline-item.left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.6s ease;
+}
+
+.timeline-item.right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.6s ease;
+}
+
+.timeline-item.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ТОЧКИ (анимация) */
+.timeline-item::before {
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.4s ease;
+}
+
+.timeline-item.show::before {
+  transform: translateX(-50%) scale(1);
+}
+
+/* ЛЕГКИЙ POP */
+.timeline-item.show::before {
+  animation: popDot 0.4s ease;
+}
+
+@keyframes popDot {
+  0% { transform: translateX(-50%) scale(0); }
+  60% { transform: translateX(-50%) scale(1.4); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+    
 </style>
 </head>
 
@@ -542,19 +592,45 @@ h2 {
 const fades = document.querySelectorAll('.fade');
 const map = document.querySelector('.map');
 function showOnScroll() {
- fades.forEach(el => {
-  const top = el.getBoundingClientRect().top;
-  if (top < window.innerHeight - 50) {
-    el.classList.add('show');
-  }
-});
+  const fades = document.querySelectorAll('.fade');
+  const timeline = document.querySelector('.timeline-modern');
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  const map = document.querySelector('.map');
 
-if (map) {
-  const mapTop = map.getBoundingClientRect().top;
-  if (mapTop < window.innerHeight - 120) {
-    map.classList.add('show');
+  // обычные блоки
+  fades.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 50) {
+      el.classList.add('show');
+    }
+  });
+
+  // линия тайминга
+  if (timeline) {
+    const top = timeline.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      timeline.classList.add('show');
+    }
   }
-}
+
+  // элементы по очереди
+  timelineItems.forEach((item, index) => {
+    const top = item.getBoundingClientRect().top;
+
+    if (top < window.innerHeight - 50) {
+      setTimeout(() => {
+        item.classList.add('show');
+      }, index * 200);
+    }
+  });
+
+  // карта
+  if (map) {
+    const mapTop = map.getBoundingClientRect().top;
+    if (mapTop < window.innerHeight - 120) {
+      map.classList.add('show');
+    }
+  }
 }
 
 window.addEventListener('scroll', showOnScroll);
