@@ -142,11 +142,16 @@ h2 {
 }
 
 .color {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
 }
+
+.color:hover {
+    transform: scale(1.15);
+    }
 
 /* RSVP */
 /* RSVP */
@@ -264,7 +269,7 @@ h2 {
 
 /* ЗАГОЛОВОК */
 .big-title {
-  font-size: 40px;
+  font-size: 46px;
   font-family: 'Cormorant Garamond', serif;
   letter-spacing: 3px;
 }
@@ -275,6 +280,9 @@ h2 {
   margin-top: 10px;
   letter-spacing: 2px;
   color: #777;
+}
+    .timer {
+  margin-top: 40px; /* было 30 */
 }
     /* ТАЙМЕР */
 .timer {
@@ -289,9 +297,11 @@ h2 {
 }
 
 .timer span {
-  font-size: 30px;
-  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  letter-spacing: 2px;
 }
+    
+    
 
 .timer p {
   font-size: 12px;
@@ -390,11 +400,12 @@ h2 {
   <p>Будем рады видеть вас в нежных пастельных оттенках</p>
 
   <div class="palette">
-    <div class="color" style="background:#edd8d8;"></div>
-    <div class="color" style="background:#f8f6c8;"></div>
-    <div class="color" style="background:#ffffff; border:1px solid #ddd;"></div>
-    <div class="color" style="background:#d4a373;"></div>
-  </div>
+  <div class="color" style="background:#edd8d8;"></div>
+  <div class="color" style="background:#f8f6c8;"></div>
+  <div class="color" style="background:#F3E5AB;"></div>
+  <div class="color" style="background:#89AC76;"></div>
+  <div class="color" style="background:#edd8d8;"></div>
+</div>
 </section>
 <section class="fade">
   <h2>Детали</h2>
