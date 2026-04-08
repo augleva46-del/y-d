@@ -42,7 +42,7 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-    transform: translateY(-325px); 
+    transform: translateY(-280px); 
 }
 
 
@@ -51,7 +51,38 @@ body {
     font-size: 56px;
     font-weight: normal;
 }
+.name {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+}
 
+.and {
+  display: inline-block;
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.9s;
+}
+
+.name:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.name:nth-child(5) {
+  animation-delay: 1.4s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .hero p {
     letter-spacing: 3px;
 }
@@ -507,7 +538,37 @@ body.loaded {
 body.loaded {
   opacity: 1;
 }
-    
+ #letter {
+  position: fixed;
+  left: 50%;
+  bottom: 80px;
+  transform: translateX(-50%) scale(0);
+  font-size: 36px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#letter.fly {
+  animation: flyLetter 2s ease forwards;
+}
+
+@keyframes flyLetter {
+  0% {
+    transform: translateX(-50%) translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20px) scale(1);
+  }
+  60% {
+    transform: translateX(40px) translateY(-150px) rotate(10deg);
+  }
+  100% {
+    transform: translateX(200px) translateY(-400px) rotate(25deg);
+    opacity: 0;
+  }
+}   
 </style>
 </head>
 
@@ -517,10 +578,14 @@ body.loaded {
     <source src="mot-avgust-jeto-ty (mp3cut.net).mp3" type="audio/mpeg">
   </audio>
 
-  <button id="music-btn">🎵 Музыка</button>
+  <button id="music-btn"></button>
 
   <div class="hero-content">
-    <h1>Дмитрий and Юлия</h1>
+    <h1>
+  <span class="name">Дмитрий</span><br>
+  <span class="and">and</span><br>
+  <span class="name">Юлия</span>
+</h1>
   </div>
 </section>
 <section class="hero-bottom fade">
@@ -661,9 +726,10 @@ body.loaded {
 
   <!-- КНОПКА -->
   <button type="submit" class="submit-btn">Отправить</button>
-
+<p id="status" style="margin-top:10px; color:#888;"></p>
 </form>
     <div id="plane">✈️</div>
+  <div id="letter">💌</div>
 </section>
 
 <footer style="padding:40px; text-align:center; color:#888;">
@@ -724,20 +790,21 @@ window.addEventListener('load', showOnScroll);
 function sendRSVP(event) {
     event.preventDefault();
 
+    const status = document.getElementById("status");
+    status.innerText = "Отправка...";
+
     const name = document.getElementById("name").value;
     const answer = document.querySelector('input[name="answer"]:checked').value;
     const comment = document.getElementById("comment").value;
 
-    const token = "8744647737:AAGM_-Pbpa366kff_FTKCoBSjcAT_xv5OLU";
-    const chat_id = "707630043";
+    const token = "ТВОЙ_ТОКЕН";
+    const chat_id = "5748017439";
 
-    const text = `
-💌 Новое RSVP
-
-👤 Имя: ${name}
-✅ Ответ: ${answer}
-💬 Комментарий: ${comment}
-    `;
+    const text =
+"💌 Новое RSVP\n\n" +
+"👤 Имя: " + name + "\n" +
+"✅ Ответ: " + answer + "\n" +
+"💬 Комментарий: " + comment;
 
     fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
@@ -750,19 +817,21 @@ function sendRSVP(event) {
         })
     })
     .then(() => {
-    const plane = document.getElementById("plane");
-    plane.classList.add("fly");
+        const letter = document.getElementById("letter");
+letter.classList.add("fly");
 
-    setTimeout(() => {
-        plane.classList.remove("fly");
-    }, 1800);
+setTimeout(() => {
+    letter.classList.remove("fly");
+}, 2000);
 
-    alert("Спасибо! Мы получили ваш ответ ❤️");
-})
+        status.innerText = "Спасибо! Ответ отправлен ❤️";
+    })
     .catch(() => {
-        alert("Ошибка отправки 😢");
+        status.innerText = "Ошибка отправки 😢";
     });
 }
+ 
+
     window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 });
