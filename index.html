@@ -691,6 +691,31 @@ body.loaded {
   0%, 80% { opacity: 1; }
   100% { opacity: 0; visibility: hidden; }
 }
+  .color {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+}
+
+.palette.show .color {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.6s ease;
+}
+
+/* задержки */
+.palette.show .color:nth-child(1) { transition-delay: 0.1s; }
+.palette.show .color:nth-child(2) { transition-delay: 0.25s; }
+.palette.show .color:nth-child(3) { transition-delay: 0.4s; }
+  @keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.palette.show .color {
+  animation: breathe 4s ease-in-out infinite;
+}
+  
 </style>
 </head>
 
@@ -805,18 +830,21 @@ body.loaded {
 <!-- DRESS CODE -->
 <section class="fade story-block">
   <h2>Дресс-код</h2>
-  <p>Будем рады видеть вас в нежных пастельных оттенках</p>
-
-  <div class="palette">
+  
+  <p style="letter-spacing:2px; font-size:12px; color:#aaa;">Для неё</p>
+<div class="palette">
   <div class="color" style="background:#edd8d8;"></div>
   <div class="color" style="background:#f8f6c8;"></div>
   <div class="color" style="background:#5B3A29;"></div>
 </div>
-  <div class="palette">
+
+<p style="letter-spacing:2px; font-size:12px; color:#aaa;">Для него</p>
+<div class="palette">
   <div class="color" style="background:#000000;"></div>
   <div class="color" style="background:#eaccad;"></div>
   <div class="color" style="background:#5B3A29;"></div>
 </div>
+  
 </section>
 <section class="fade story-block">
   <h2>Детали</h2>
@@ -928,6 +956,15 @@ stories.forEach((el, i) => {
 
 window.addEventListener('scroll', showOnScroll);
 window.addEventListener('load', showOnScroll);
+  
+  const palettes = document.querySelectorAll('.palette');
+
+palettes.forEach(p => {
+  const top = p.getBoundingClientRect().top;
+  if (top < window.innerHeight - 50) {
+    p.classList.add('show');
+  }
+});
 </script>
 
 <script>
