@@ -899,8 +899,6 @@ body.loaded {
 </footer>
 
 <script>
-// АНИМАЦИЯ
-
 function showOnScroll() {
   const fades = document.querySelectorAll('.fade');
   const timeline = document.querySelector('.timeline-modern');
@@ -914,18 +912,18 @@ function showOnScroll() {
       el.classList.add('show');
     }
   });
-// STORY BLOCKS
-const stories = document.querySelectorAll('.story-block');
 
-stories.forEach((el, i) => {
-  const top = el.getBoundingClientRect().top;
+  // STORY BLOCKS
+  const stories = document.querySelectorAll('.story-block');
+  stories.forEach((el, i) => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 80) {
+      setTimeout(() => {
+        el.classList.add('show');
+      }, i * 200);
+    }
+  });
 
-  if (top < window.innerHeight - 80) {
-    setTimeout(() => {
-      el.classList.add('show');
-    }, i * 200);
-  }
-});
   // линия тайминга
   if (timeline) {
     const top = timeline.getBoundingClientRect().top;
@@ -934,10 +932,9 @@ stories.forEach((el, i) => {
     }
   }
 
-  // элементы по очереди
+  // элементы тайминга
   timelineItems.forEach((item, index) => {
     const top = item.getBoundingClientRect().top;
-
     if (top < window.innerHeight - 50) {
       setTimeout(() => {
         item.classList.add('show');
@@ -952,20 +949,22 @@ stories.forEach((el, i) => {
       map.classList.add('show');
     }
   }
+
+  // 🎨 ДРЕСС-КОД (вставлено правильно)
+  const palettes = document.querySelectorAll('.palette');
+  palettes.forEach(p => {
+    const top = p.getBoundingClientRect().top;
+    if (top < window.innerHeight - 80) {
+      p.classList.add('show');
+    }
+  });
 }
 
+// запуск
 window.addEventListener('scroll', showOnScroll);
 window.addEventListener('load', showOnScroll);
-  
-  const palettes = document.querySelectorAll('.palette');
-
-palettes.forEach(p => {
-  const top = p.getBoundingClientRect().top;
-  if (top < window.innerHeight - 50) {
-    p.classList.add('show');
-  }
-});
 </script>
+
 
 <script>
 function sendRSVP(event) {
