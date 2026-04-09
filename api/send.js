@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
   const { name, answer, comment } = req.body;
 
-  const token = "ТВОЙ_ТОКЕН";
-  const chat_id = "ТВОЙ_CHAT_ID";
+  const token = "8744647737:AAEQTPHqEzFt67RC0Rrx7uJYvJj_M8cz75Q";
+  const chat_id = "5748017439";
 
   const text =
     "💌 Новое RSVP\n\n" +
